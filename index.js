@@ -49,8 +49,10 @@ async function run() {
                   }
             });
 
-            app.get('/data',async(req,res)=>{
-                  const result = await cartsCollection.find().toArray()
+            app.get('/customer_info/:id',async(req,res)=>{
+                  const id = req.params.id;
+                  const query= {'Order ID':id}
+                  const result = await cartsCollection.find(query).toArray()
                   console.log(result);
                   res.send(result)
             })
